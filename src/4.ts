@@ -1,10 +1,6 @@
 class Key {
-  private signature: number;
-
-  constructor() {
-    // Генерую випадковий підпис за допомогою Math.random()
-    this.signature = Math.random();
-  }
+  // Генерую випадковий ключ за допомогою Math.random()
+  private signature: number = Math.random();
 
   // Метод, що повертає значення властивості signature
   public getSignature(): number {
@@ -13,14 +9,8 @@ class Key {
 }
 
 class Person {
-  private name: string;
-  private key: Key;
-
   //Конструктор приймає об'єкт класу Key і зберігає їх у приватному властивості key(додатково оголошую властивість name)
-  constructor(name: string, key: Key) {
-    this.name = name;
-    this.key = key;
-  }
+  constructor(private name: string, private key: Key) {}
 
   // Метод, що повертає значення властивості key
   public getKey(): Key {
@@ -35,12 +25,9 @@ class Person {
 
 abstract class House {
   protected door: boolean = false; //початкове значчення - двері зачинені
-  protected key: Key;
   protected tenants: Person[] = []; // початкове значення - пустий масив
 
-  constructor(key: Key) {
-    this.key = key;
-  }
+  constructor(protected key: Key) {}
 
   public abstract OpenDoor(key: Key): void;
 
